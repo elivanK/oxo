@@ -1,10 +1,8 @@
-import {Provider} from 'react-redux';
 import React, {Component} from 'react';
 //import assest from '/Users/elivan/Desktop/game/game/src/assets/ttt_play2.gif';
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 //import Store from './src/Store';
 import Header from './Header';
-import Color from './Color';
 import GameBoard from './GameBoard';
 import {Font } from 'expo';
 
