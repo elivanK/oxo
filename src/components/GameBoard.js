@@ -18,9 +18,8 @@ export default class GameBoard extends Component {
             result: -1,
             round: 0,
             fontLoaded: false,
-            visibleModal: true,
-            
-            
+            visibleModal: false,
+            text: '',
         }
     }
      //Load the font from our assets directory using Expo.Font.loadAsync()
@@ -40,6 +39,7 @@ export default class GameBoard extends Component {
     }
     //The method to close the modal
     closeModal() {
+        this.restart()
         this.setState({visibleModal: false});
     }
 
@@ -126,7 +126,7 @@ export default class GameBoard extends Component {
        return conditions.some(d => d.every(item => inputs.indexOf(item) !== -1 ))        
      }
      judgeWinner() {
-        const {userInputs, AIInputs, result } = this.state
+        const {userInputs, AIInputs, result, text } = this.state
         const inputs = userInputs.concat(AIInputs)
         //When I win - the result is 0
         if (inputs.length >= 5 ) {
@@ -134,7 +134,8 @@ export default class GameBoard extends Component {
             if (res && result !== 0) {
                 return this.setState({
                     result: 0,
-                    visibleModal: true
+                    visibleModal: true,
+                    text: 'You won!'
                 })  
                      
             }   
@@ -142,7 +143,9 @@ export default class GameBoard extends Component {
                 res = this.checkWinner(AIInputs)
                 if (res && result !== 1) {
                     return  this.setState({
-                        result: 1
+                        result: 1,
+                        visibleModal: true,
+                        text: 'I won!'
                     })
                     
                 }               
@@ -150,7 +153,9 @@ export default class GameBoard extends Component {
         //When none wins - the result is 2.    
         if (inputs.length === 9 && result !== 2) {
             this.setState({
-                result: 2
+                result: 2,
+                visibleModal: true,
+                text: 'Tie!'
             })
         }
     }
@@ -159,7 +164,7 @@ export default class GameBoard extends Component {
         const urlImage = '/Users/elivan/Desktop/game/game/src/assets/images/geo2.gif'
         const tttcircle = '/Users/elivan/Desktop/game/game/src/assets/sounds/tttcircle.wav'
         const tttcross = '/Users/elivan/Desktop/game/game/src/assets/sounds/tttcross.wav'
-        const {userInputs, AIInputs, result } = this.state
+        const {userInputs, AIInputs, result, text } = this.state
         console.log(result);
         return (
             <View>
@@ -222,19 +227,7 @@ export default class GameBoard extends Component {
                             ))
                             }
                         </View>
-                        </TouchableOpacity>
-                      
-                            {
-                                result === 2 && <Text>No winner!</Text>
-                            }
-                            {
-                                result !== -1 && (
-                            <TouchableOpacity onPress={() => this.restart()}>
-                            <Text>Restart</Text>
-                            </TouchableOpacity>)
-                           
-                            }
-                   
+                        </TouchableOpacity>                         
                      </ImageBackground>
                      <View style={styles.modalContainer}>
                      <Modal 
@@ -246,7 +239,7 @@ export default class GameBoard extends Component {
                            { 
                             this.state.fontLoaded ? (   
                             <Text style=
-                            {styles.textModal}>Hello there!</Text>
+                            {styles.textModal}>{text}</Text>
                             ) : null
                         }
                         {this._renderButton('Restart', () => this.closeModal())}
