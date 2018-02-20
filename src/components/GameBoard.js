@@ -37,7 +37,7 @@ export default class GameBoard extends Component {
     openModal() {
         this.setState({visibleModal: true});
     }
-    //The method to close the modal
+    //The method to close the modal and restart the game.
     closeModal() {
         this.restart()
         this.setState({visibleModal: false});
@@ -49,8 +49,10 @@ export default class GameBoard extends Component {
     }
     _renderButton = (text, onPress) => (
         <TouchableOpacity onPress={onPress}>
+        <View style={styles.center}>
           <View style={styles.button}>
             <Text style={{color: 'white'}}>{text}</Text>
+            </View>
           </View>
         </TouchableOpacity>
       );
@@ -275,8 +277,13 @@ const styles = StyleSheet.create({
              {translateX: 100}
             ]
        },
+       center: {
+        justifyContent: 'center',
+        alignItems: 'center',
+       },
        button: {
         backgroundColor: 'green',
+        width: 120,
         padding: 12,
         margin: 16,
         justifyContent: 'center',
