@@ -1,11 +1,12 @@
-import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground, Sound, Button } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, ImageBackground, Button } from 'react-native';
 import Modal from 'react-native-modal';
 import React, {Component} from 'react';
 //import { Constants, Audio } from 'expo';
 import Circle from './Circle';
 import Cross from './Cross';
-import { Font } from 'expo';
 import { centerPoints, areas, conditions } from '../constansts/gameco';
+import Expo, { Asset, Audio, Font, Video } from 'expo';
+
 //If result === -1 game on, if result ===0 I won.
 //result === 1 AI win, result === 2 computer
 export default class GameBoard extends Component {
@@ -22,6 +23,9 @@ export default class GameBoard extends Component {
             text: '',
         }
     }
+    
+        
+
      //Load the font from our assets directory using Expo.Font.loadAsync()
      async componentWillMount() {
         await Font.loadAsync({
@@ -32,7 +36,7 @@ export default class GameBoard extends Component {
         });
 
     }
-    
+
     //The method to open the modal 
     openModal() {
         this.setState({visibleModal: true});
@@ -71,7 +75,7 @@ export default class GameBoard extends Component {
         }, 5) 
       //console.log('Restart the game')
     }
-
+    
     boardClickHandler(e) {
         const {locationX, locationY } = e.nativeEvent
         const {userInputs, AIInputs, result } = this.state
@@ -137,7 +141,8 @@ export default class GameBoard extends Component {
                 return this.setState({
                     result: 0,
                     visibleModal: true,
-                    text: `Well there is still hope for humanity after all... You Win!`
+                    text: `Well there is still hope for humanity after all...
+You Win!`
                 })  
                      
             }   
@@ -147,7 +152,8 @@ export default class GameBoard extends Component {
                     return  this.setState({
                         result: 1,
                         visibleModal: true,
-                        text: `Roses are red, Violets are blue, winning is sweet and you are a fool! I Win!`
+                        text: `Roses are red, Violets are blue, winning is sweet and you are a fool! 
+I Rock!`
                     })
                     
                 }               
@@ -157,15 +163,16 @@ export default class GameBoard extends Component {
             this.setState({
                 result: 2,
                 visibleModal: true,
-                text: 'Tie! Boring... just give up and let me Win.'
+                text: `Tie! Boring... 
+Just give up and let 
+ME Win!`
             })
         }
     }
     
     render() {
         const urlImage = '/Users/elivan/Desktop/game/game/src/assets/images/geo2.gif'
-        const tttcircle = '/Users/elivan/Desktop/game/game/src/assets/sounds/tttcircle.wav'
-        const tttcross = '/Users/elivan/Desktop/game/game/src/assets/sounds/tttcross.wav'
+        
         const {userInputs, AIInputs, result, text } = this.state
         console.log(result);
         return (
@@ -211,8 +218,7 @@ export default class GameBoard extends Component {
                                    xTranslate={centerPoints[d].x} 
                                    yTranslate={centerPoints[d].y}
                                    color = 'transparent'
-                                   />
-                                  
+                                   />                          
                                 ))
                            }
                            {

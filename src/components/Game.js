@@ -40,7 +40,7 @@ export default class Game extends Component {
           <View style={styles.container}>
           <Header/>
           {
-              !gameStarted ? (
+              gameStarted ? (
             <GameBoard />
               ) : (
                   <View>   
@@ -76,7 +76,7 @@ export default class Game extends Component {
      marginBottom: 5, 
      marginTop: 70,   
      fontFamily: 'sayso-chic',
-     fontSize: 17,
+     fontSize: 19,
       },
       image: {
         height: 400,
