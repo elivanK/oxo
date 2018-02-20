@@ -135,7 +135,7 @@ export default class GameBoard extends Component {
                 return this.setState({
                     result: 0,
                     visibleModal: true,
-                    text: 'You won!'
+                    text: `Well there is still hope for humanity after all... You Win!`
                 })  
                      
             }   
@@ -145,7 +145,7 @@ export default class GameBoard extends Component {
                     return  this.setState({
                         result: 1,
                         visibleModal: true,
-                        text: 'I won!'
+                        text: `Roses are red, Violets are blue, winning is sweet and you are a fool! I Win!`
                     })
                     
                 }               
@@ -155,7 +155,7 @@ export default class GameBoard extends Component {
             this.setState({
                 result: 2,
                 visibleModal: true,
-                text: 'Tie!'
+                text: 'Tie! Boring... just give up and let me Win.'
             })
         }
     }
@@ -208,7 +208,7 @@ export default class GameBoard extends Component {
                                    key={i}
                                    xTranslate={centerPoints[d].x} 
                                    yTranslate={centerPoints[d].y}
-                                   color = 'green'
+                                   color = 'transparent'
                                    />
                                   
                                 ))
@@ -281,8 +281,8 @@ const styles = StyleSheet.create({
         margin: 16,
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 4,
         borderColor: 'rgba(0, 0, 0, 0.1)',
+        borderRadius: 5,
   },
   modalContainer: {
     flex: 1,

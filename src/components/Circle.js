@@ -27,12 +27,15 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,    
         borderRadius: 40,
+        borderColor: 'green',
+        borderWidth: 7,
+        
        
     },
     innerCircle: {
-        backgroundColor: 'white',
-        width: 70,
-        height: 70,
+        backgroundColor: 'transparent',
+        width: 80,
+        height: 80,
         borderRadius: 35,
     },
 })
