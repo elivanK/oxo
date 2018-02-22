@@ -5,10 +5,10 @@ import React, {Component} from 'react';
 import Circle from './Circle';
 import Cross from './Cross';
 import { centerPoints, areas, conditions } from '../constansts/gameco';
-import Expo, { Asset, Audio, Font, Video } from 'expo';
+import { Constants, Audio, Font } from 'expo';
 
 //If result === -1 game on, if result ===0 I won.
-//result === 1 AI win, result === 2 computer
+//result === 1 AI win, result === 2 tie
 export default class GameBoard extends Component {
    
     constructor() {
@@ -21,10 +21,40 @@ export default class GameBoard extends Component {
             fontLoaded: false,
             visibleModal: false,
             text: '',
+
         }
     }
     
+     //The methd that handles the sound - Expo audio
+     //  onPress={this._handlePlaySoundAsync}
+     _handlePlaySoundAsyncCircle = async () => {
+        console.log('sound runing');
+         await Audio.setIsEnabledAsync(true);
+         const soundCircle = new Expo.Audio.Sound();
+         try {
+            await soundCircle.loadAsync(require(`/Users/elivan/Desktop/game/game/src/assets/sounds/poka03.mp3`));
+            //await soundCircle.setPositionAsync(0);
+            await soundCircle.playAsync();
+         } catch (err) {
+            console.log('Error in sound line 39', err);
+         }       
+         
+     };   
+     //The methd that handles the sound - Expo audio
+     //  onPress={this._handlePlaySoundAsync}
+     _handlePlaySoundAsyncCross = async () => {
+        console.log('sound runing');
+         await Audio.setIsEnabledAsync(true);
+         const soundCircle = new Expo.Audio.Sound();
+         try {
+            await soundCircle.loadAsync(require(`/Users/elivan/Desktop/game/game/src/assets/sounds/poka02.mp3`));
+            await soundCircle.playAsync();
+         } catch (err) {
+            console.log('Error in sound line 39', err);
+         }
         
+         
+     };   
 
      //Load the font from our assets directory using Expo.Font.loadAsync()
      async componentWillMount() {
@@ -95,16 +125,21 @@ export default class GameBoard extends Component {
                 setTimeout(() => {
                     this.judgeWinner()
                     this.AIMove()            
-                }, 5)
+                }, 700)
             }
     }
         
-    AIMove() { 
+    AIMove() {   
+       
         const {userInputs, AIInputs, result} = this.state
             if (result !== -1) {
-                return
+              return
           }
-
+          if (result == 0) {
+            !this._handlePlaySoundAsyncCircle()
+          } else {
+            this._handlePlaySoundAsyncCircle()
+          }
           while(true) {    
             const inputs = userInputs.concat(AIInputs)
             const randomNum = Number.parseInt(Math.random() * 9)
@@ -116,6 +151,7 @@ export default class GameBoard extends Component {
                     this.judgeWinner()
                     break
             }
+            
         }
         
     }
@@ -170,7 +206,7 @@ ME Win!`
         }
     }
     
-    render() {
+    render() {       
         const urlImage = '/Users/elivan/Desktop/game/game/src/assets/images/geo2.gif'
         
         const {userInputs, AIInputs, result, text } = this.state
@@ -180,7 +216,11 @@ ME Win!`
                 <ImageBackground 
                 source={require(urlImage)}
                 style={styles.container}>
-                <TouchableOpacity onPress={e => this.boardClickHandler(e) }>
+                <TouchableOpacity              
+                onPress={e => {
+                this.boardClickHandler(e)
+                this._handlePlaySoundAsyncCross()
+                } }>
                 <View style={styles.board}>
                 <View style={styles.line}/>
                 <View style={[styles.line, {
@@ -213,12 +253,15 @@ ME Win!`
                            {
                                userInputs.map((d, i) => (
                                    
-                                   <Circle 
+                                   <Circle       
                                    key={i}
                                    xTranslate={centerPoints[d].x} 
                                    yTranslate={centerPoints[d].y}
                                    color = 'transparent'
-                                   />                          
+                                   > 
+                                   
+                                   </Circle> 
+                                                                                       
                                 ))
                            }
                            {
@@ -229,9 +272,9 @@ ME Win!`
                                 xTranslate={centerPoints[d].x} 
                                 yTranslate={centerPoints[d].y}
                                 color = 'black'
-                                />
-                              
-                             
+                                > 
+                                
+                                </Cross>                             
                             ))
                             }
                         </View>

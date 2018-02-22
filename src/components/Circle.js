@@ -1,8 +1,10 @@
 import React ,{Component} from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ImageBackground } from 'react-native';
-
+import { Constants, Audio, Font } from 'expo';
 export default class Circle extends Component {
+    
  render() {
+     
      const { xTranslate, yTranslate, color } = this.props
      return (
          <View 
