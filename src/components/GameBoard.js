@@ -125,13 +125,13 @@ export default class GameBoard extends Component {
                 setTimeout(() => {
                     this.judgeWinner()
                     this.AIMove()            
-                }, 800)
+                }, 600)
             }
     }
         
     AIMove() {   
-       
-        const {userInputs, AIInputs, result} = this.state
+        setTimeout(() => {
+            const {userInputs, AIInputs, result} = this.state
             if (result !== -1) {
               return
           }
@@ -152,7 +152,10 @@ export default class GameBoard extends Component {
                     break
             }
             
-        }
+        }         
+        }, 600)
+        
+        
         
     }
     
