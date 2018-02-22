@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
+import {View, Text, StyleSheet } from 'react-native';
 import {Font } from 'expo';
 
 export default class Header extends Component {

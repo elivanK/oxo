@@ -177,7 +177,7 @@ export default class GameBoard extends Component {
                 return this.setState({
                     result: 0,
                     visibleModal: true,
-                    text: `Well there is still hope for humanity after all...
+                    text: `There is still hope for humanity after all...
 You Win!`
                 })  
                      
