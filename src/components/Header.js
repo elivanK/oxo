@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet } from 'react-native';
+import {View, Text, StyleSheet, Button, TouchableOpacity } from 'react-native';
 import {Font } from 'expo';
 
 export default class Header extends Component {
@@ -7,7 +7,7 @@ export default class Header extends Component {
         super(props)
         //Create the State
         this.state = {
-            fontLoaded: false
+            fontLoaded: false,           
         }
     }
      //Load the font from our assets directory using Expo.Font.loadAsync()
@@ -23,7 +23,8 @@ export default class Header extends Component {
     
     render() {
         return (
-            <View style={styles.headerContainer}>
+            <View 
+            style={styles.headerContainer}>
             {
                 this.state.fontLoaded ? (
                 <Text style={styles.header}>OXO</Text>
@@ -33,6 +34,7 @@ export default class Header extends Component {
             </View>
         )
     }
+    
     
     
 }

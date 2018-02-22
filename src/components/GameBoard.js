@@ -28,7 +28,7 @@ export default class GameBoard extends Component {
      //The methd that handles the sound - Expo audio
      //  onPress={this._handlePlaySoundAsync}
      _handlePlaySoundAsyncCircle = async () => {
-        console.log('sound runing');
+        //console.log('sound runing');
          await Audio.setIsEnabledAsync(true);
          const soundCircle = new Expo.Audio.Sound();
          try {
@@ -43,7 +43,7 @@ export default class GameBoard extends Component {
      //The methd that handles the sound - Expo audio
      //  onPress={this._handlePlaySoundAsync}
      _handlePlaySoundAsyncCross = async () => {
-        console.log('sound runing');
+        //console.log('sound runing');
          await Audio.setIsEnabledAsync(true);
          const soundCircle = new Expo.Audio.Sound();
          try {
@@ -119,13 +119,13 @@ export default class GameBoard extends Component {
             (locationY >= d.startY && locationY <= d.endY))
             
             if (area && inputs.every(d => d !== area.id)) {
-                console.log('You pressed id:', area.id)
+                //console.log('You pressed id:', area.id)
                 this.setState({
                     userInputs: userInputs.concat(area.id)})
                 setTimeout(() => {
                     this.judgeWinner()
                     this.AIMove()            
-                }, 700)
+                }, 800)
             }
     }
         
@@ -188,8 +188,8 @@ You Win!`
                     return  this.setState({
                         result: 1,
                         visibleModal: true,
-                        text: `Roses are red, Violets are blue, winning is sweet and you are a fool! 
-I Rock!`
+                        text: `Roses are red, Violets are blue, winning is sweet and you are a twit! 
+I Win!`
                     })
                     
                 }               
