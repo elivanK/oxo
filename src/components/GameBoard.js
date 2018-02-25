@@ -180,8 +180,7 @@ export default class GameBoard extends Component {
                 return this.setState({
                     result: 0,
                     visibleModal: true,
-                    text: `There is still hope for humanity after all...
-You Win!`
+                    text: `You Win!`
                 })  
                      
             }   
@@ -191,8 +190,7 @@ You Win!`
                     return  this.setState({
                         result: 1,
                         visibleModal: true,
-                        text: `Roses are red, Violets are blue, winning is sweet and you are a twit! 
-I Win!`
+                        text: `I Win!`
                     })
                     
                 }               
@@ -202,9 +200,7 @@ I Win!`
             this.setState({
                 result: 2,
                 visibleModal: true,
-                text: `Tie! Boring... 
-Just give up and let 
-ME Win!`
+                text: `Tie!`
             })
         }
     }
